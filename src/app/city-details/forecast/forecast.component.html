@@ -1,0 +1,32 @@
+
+<table class='table borderless table-responsive'> 
+  <thead class="text-center">
+    <tr>
+      <th colspan="9" class="text-center"><h4>Forecast for next 5 days</h4></th>
+    </tr> 
+    <tr class="text-center">
+      <th>Day</th>
+      <th>3h</th>
+      <th>Clouds</th>
+      <th>Max-temp</th>
+      <th>Min-temp</th>
+      <th>Wind</th>
+      <th>Pressure</th>
+      <th>Humidity %</th>
+      <th>Weather description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="text-center" *ngFor="let item of forecast?.list[0]"> 
+      <td><small>{{item?.dt_txt | date:'EEEE, M/d'}}</small></td>
+      <td>{{item?.dt_txt | date:'h a'}}</td>
+      <td>{{item.clouds.all}}</td>
+      <td class="max">{{item.main.temp_max - 273.15 | convert}}</td>
+      <td class="min">{{item.main.temp_min - 273.15 | convert}}</td>  
+      <td>{{item.wind?.speed}}</td>
+      <td>{{item.main?.pressure}}</td>
+      <td>{{item.main?.humidity | number}}</td>
+      <td>{{item.weather[0]?.description}}</td>
+    </tr>
+  </tbody>
+</table>

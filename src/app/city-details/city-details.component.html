@@ -1,0 +1,70 @@
+
+<div class="container-fluid">
+  
+  <div class="row justify-content-md-center" *ngIf="city">
+    <div class="col-12">
+      <h2>Detail weather conditions for {{city?.name}}</h2>
+    </div>
+    <hr>
+    <div class="col-sm-3 forecast">
+      <table class='table borderless table-responsive'> 
+        <thead class="text-center">
+          <tr>
+            <th colspan="2" class="text-center"><h4>{{city?.name}}</h4></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Coordinate lat/lon</th>
+            <td>{{city?.coord.lat}}/{{city?.coord.lon}}</td>
+          </tr>
+          <tr>
+            <th>Clouds</th>
+            <td>{{city.clouds.all}}</td>
+          </tr>
+          <tr>
+            <th>Min-temp</th>
+            <td>{{city.main.temp_min - 273.15 | convert}} &#8451;</td>
+          </tr>
+          <tr>
+            <th>Max-temp</th>
+            <td>{{city.main.temp_max - 273.15 | convert}} &#8451;</td>
+          </tr>
+          <tr>
+            <th>Wind Speed</th>
+            <td>{{city.wind?.speed}} m/s</td>
+          </tr>
+          <tr>
+            <th>Pressure</th>
+            <td>{{city.main.pressure}}</td>
+          </tr>
+          <tr>
+            <th>Humidity</th>
+            <td>{{city.main?.humidity | number}} %</td>
+          </tr>
+          <tr>
+            <th>Weather description</th>
+            <td>{{city.weather[0]?.description}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-5 forecast">
+       <!-- google Maps -->
+       <agm-map [latitude]="city?.coord.lat" [longitude]="city?.coord.lon">
+          <agm-marker [latitude]="city?.coord.lat" [longitude]="city?.coord.lon"></agm-marker>
+        </agm-map>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-sm-8 forecast">
+       <!-- 5 days forecast-->
+      <app-forecast [forecast]="forecast"></app-forecast>
+      <button class="btn btn-primary" [routerLink]="['']">Back</button>
+    </div>
+  </div>
+</div>
+ 
+
+
+

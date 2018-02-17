@@ -1,0 +1,17 @@
+<div class="row justify-content-md-center gray">
+  <div class="search" [style.height.px]="cities.length >=6 ? '120' : '55'">
+    <form (submit)="onSubmit()"> 
+      <input type="text" placeholder="Enter city" [(ngModel)]="querySearch" name="search" > 
+    </form>
+    <div class="wrapper" >
+      <app-buttons *ngFor="let city of cities" [citybtn]="city" (emitBtn)="deleteCity($event)"></app-buttons>
+    </div>
+  </div>
+</div>
+<div class="row cityContainer">
+    <div class="cityDiv" *ngFor="let city of cities">
+       <app-city [city]="city"></app-city>
+    </div>
+</div>
+
+
